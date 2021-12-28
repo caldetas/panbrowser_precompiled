@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+
+
+  app:
+#    volumes:
+#      - .:/app
+#    build: .
+    image: caldetas/panbrowser_blumeria_app:latest
+    container_name: panbrowser_blumeria_precompiled_app
+    links:
+      - db
+    expose:
+      - "5009"
+    ports:
+      - "5009:5009"
+    volumes:
+    - ./db_sqlite:/db_sqlite
+
+
+  db:
+    image: mysql:8.0.23
+    container_name: panbrowser_blumeria_precompiled_db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+
+    ports:
+      - "3309:3306"
+
+    environment:
+      TZ: "Europe/Zurich"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: docker
+
+    volumes:
+    - ./db:/docker-entrypoint-initdb.d/:ro
