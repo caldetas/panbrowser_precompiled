@@ -11,9 +11,9 @@ services:
     links:
       - db
     expose:
-      - "5010"
+      - "5008"
     ports:
-      - "5010:5010"
+      - "5008:5008"
     volumes:
     - ./db_sqlite:/db_sqlite
 
