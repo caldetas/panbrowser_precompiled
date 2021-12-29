@@ -3,17 +3,14 @@ services:
 
 
   app:
-#    volumes:
-#      - .:/app
-#    build: .
     image: caldetas/panbrowser_blumeria_app:latest
     container_name: panbrowser_blumeria_precompiled_app
     links:
       - db
     expose:
-      - "5009"
+      - "5007"
     ports:
-      - "5009:5009"
+      - "5007:5007"
     volumes:
     - ./db_sqlite:/db_sqlite
 
